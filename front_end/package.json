@@ -1,0 +1,43 @@
+{
+  "name": "login-register-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "cors": "^2.8.5",
+    "delay": "^4.2.0",
+    "file-loader": "^5.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-modal-login": "^1.4.5",
+    "react-pose": "^4.0.8",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.0.1",
+    "react-spring": "^8.0.20",
+    "url-loader": "^3.0.0"
+  },
+  "scripts": {
+    "start": "NODE_PATH=src react-scripts start",
+    "build": "NODE_PATH=src react-scripts build",
+    "test": "NODE_PATH=src react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
