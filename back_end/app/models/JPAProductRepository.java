@@ -137,7 +137,7 @@ public class JPAProductRepository implements ProductRepository {
 
 
     private Stream<Product> list(EntityManager em) {
-        List<Product> persons = em.createQuery("select pid,pname,quant,cat,img1,expdate from Product where state=:s ORDER BY expdate DESC").setParameter("s",0).getResultList();
+        List<Product> persons = em.createQuery("select pid,pname,quant,cat,img1,expdate,cost,year from Product where state=:s ORDER BY expdate DESC").setParameter("s",0).getResultList();
         return persons.stream();
     }
 
@@ -154,13 +154,13 @@ public class JPAProductRepository implements ProductRepository {
     }
 
     private Stream<Product>  getcProducts(EntityManager em,String scat) {
-        List<Product> persons = em.createQuery("select pid,pname,nprice,quant,img1,des from Product p where scat=:scat and state=:s").setParameter("scat",scat).setParameter("s",1).getResultList();
+        List<Product> persons = em.createQuery("select pid,pname,nprice,quant,img1,des,cost,year from Product p where scat=:scat and state=:s").setParameter("scat",scat).setParameter("s",1).getResultList();
         return persons.stream();
     }
 
     private Stream<Product>  getSearchProducts(EntityManager em,String search) {
         String sc="%"+search+"%";
-        List<Product> persons = em.createQuery("select pid,pname,nprice,quant,img1,des from Product p where (p.pname LIKE  :search or p.cat LIKE  :search or p.scat LIKE  :search or p.des LIKE  :search) and state=:s").setParameter("search",sc).setParameter("s",1).getResultList();
+        List<Product> persons = em.createQuery("select pid,pname,nprice,quant,img1,des,cost,year from Product p where (p.pname LIKE  :search or p.cat LIKE  :search or p.scat LIKE  :search or p.des LIKE  :search) and state=:s").setParameter("search",sc).setParameter("s",1).getResultList();
         return persons.stream();
     }
 

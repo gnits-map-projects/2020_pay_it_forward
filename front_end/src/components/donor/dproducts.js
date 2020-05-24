@@ -120,15 +120,16 @@ class Dproducts extends React.Component {
             
                 <div style={admin} class="adminmain">
                     <CNav/>
-                   
-                    <table id="table" class="w3-table-all w3-centered" border="1">
+                    <div class="cat">
+                     <h2><b><center>DONATED PRODUCTS</center></b></h2><br/>
+                      <table id="etable" class="w3-table-all w3-centered" border="1">
                         <th><center>Name</center></th>
                         <th><center>Image</center></th>
                         <th><center>Selected NGO</center></th>
                         
-                     <tbody> {this.renderResultRows()} </tbody>
+                      <tbody> {this.renderResultRows()} </tbody>
                     </table>
-                    
+                    </div>
                     
                 </div>
             )

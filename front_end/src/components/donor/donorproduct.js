@@ -3,6 +3,7 @@ import donorhome from '../img/donorhome.jpg';
 import './d_home.css';
 import './Nav.css';
 import pit from '../img/pit.jpg';
+import swal from 'sweetalert';
 
 var eid,profile,image1,image2,message,ngo,s;
 
@@ -29,7 +30,9 @@ class Donor extends React.Component {
         file1:null,
         file2:null,
         
-        scat:null, 
+        scat:null,
+        cost:null,
+        year:null, 
     }
 
     this.handleImage1 = this.handleImage1.bind(this)
@@ -44,6 +47,10 @@ class Donor extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     
     this.scatChange=this.scatChange.bind(this)
+
+    this.costChange = this.costChange.bind(this);
+    this.yearChange = this.yearChange.bind(this);
+
 
     eid=sessionStorage.getItem("id")
     profile="/donorprofile";
@@ -62,6 +69,21 @@ class Donor extends React.Component {
       pname: event.target.value
     });
   }
+
+  costChange=event=>{
+    this.setState({
+      cost: event.target.value
+    });
+    
+  }
+  yearChange=event=>{
+    this.setState({
+      year: event.target.value
+    });
+    
+  }
+  
+  
 
   
 
@@ -129,7 +151,7 @@ class Donor extends React.Component {
    }); 
 }
   } 
-  handleSubmit(event) {
+  /*handleSubmit(event) {
     
     event.preventDefault();
     console.log(this.state)
@@ -175,9 +197,79 @@ class Donor extends React.Component {
         window.location.reload(false);
       }
     })
+  }*/
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.quality,this.state.year)
+    /*if(this.state.quality == "used" && this.state.year==null)
+    {
+      alert("You need to mention the purchasing year if product is a used one..")
+    }
+    else if(this.state.quality == "new" && this.state.year != null)
+    {
+      alert("Need not provide purchasing year for a new product")
+    }*/
+    
+    
+    console.log(this.state)
+    var body = {
+        did: eid,
+        pname: this.state.pname,
+        quant: this.state.quant,
+        quality: this.state.quality,
+        expdate: sessionStorage.getItem("date"),
+        des: this.state.des,
+        cat: this.state.category,
+        scat:this.state.scat,
+        cost:this.state.cost,
+        year:this.state.year,
+        img1: image1,
+        img2: image2,
+        state: 0,
+        ngo:sessionStorage.getItem("sngo")
+    }
+    console.log(body);
+    const url = "http://localhost:9000/addproduct";
+    let headers = new Headers();
+  
+    headers.append('Content-Type','application/json');
+    headers.append('Accept','application/json');
+  
+    headers.append('Access-Control-Allow-origin',url);
+    headers.append('Access-Control-Allow-Credentials','true');
+  
+    headers.append('POST','GET');
+  
+    fetch(url, {
+      headers:headers,
+      method: 'POST',
+      body: JSON.stringify(body)
+    })
+    .then(response => {if(response.ok){
+  
+        var s= parseInt(sessionStorage.getItem("step"))+1;
+        sessionStorage.removeItem("step");
+        sessionStorage.setItem("step",s)
+        console.log(s,typeof(sessionStorage.getItem("step")))
+        //alert("Product Donation Successful!!!")
+        swal({
+          title: "Donation",
+          text: "Product donated Successfully!!!",
+          icon: "success",
+          button: "Ok",
+        }).then(function(){
+          window.location.reload(false);
+        });
+        
+      }
+    })
+  
   }
+  
   success(){
-      sessionStorage.clear();
+     let id=sessionStorage.getItem("id")
+     sessionStorage.clear()
+     sessionStorage.setItem("id",id)
 
       window.location.href="/donorhome"
   }
@@ -188,7 +280,7 @@ class Donor extends React.Component {
           <div class="home">
             <div class="nav">
                 <ul>
-                    <li><a class="active" href="/"><img alt="sorry" height="120%" width="15%" src={pit}/></a></li>
+                    <li><a class="active" href="/"><img alt="sorry" height="67px" width="190px" src={pit}/></a></li>
                     <li><a class="links" href="/login">LogOut</a></li>
                     <li><a class="links" href={profile}>MyProfile</a></li>
                     <li><a class="links" href="/dproducts">Donated Products</a></li>
@@ -229,12 +321,32 @@ class Donor extends React.Component {
                       </div>
                       
                   </div>
+
+<div class="row">
+    <div class="col-25">
+        <label for="cost">Product Original Cost</label>
+    </div>
+    <div class="col-75">
+        <input type="text" id="cost" name="cost" placeholder="product original price.." value={this.state.cost} onChange={this.costChange}/>
+    </div>            
+</div>
+
+<div class="row">
+    <div class="col-25">
+        <label for="year">Product Purchased year</label>
+    </div>
+    <div class="col-75">
+        <input type="text" id="year" name="year" placeholder="product purchased year.." value={this.state.year} onChange={this.yearChange}/>
+    </div>            
+</div>
+
+
                   <div class="row">
                     <div class="col-25">
                       <label for="des">Description</label>
                     </div>
                     <div class="col-75">
-                      <textarea id="des" name="des" placeholder="Write something.." value={this.state.des} onChange={this.desChange} required></textarea>
+                      <textarea id="des" name="des" placeholder="Write Description of the Product" value={this.state.des} onChange={this.desChange} required></textarea>
                     </div>
                    
                     

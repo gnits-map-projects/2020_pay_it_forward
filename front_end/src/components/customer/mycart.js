@@ -1,5 +1,6 @@
 import React from "react";
 import CNav from './Nav';
+import swal from 'sweetalert';
 
 
 
@@ -39,9 +40,10 @@ class CartProfile extends React.Component {
                 <tr id={index} className="foralign">
                     
                     <td >{song[0]}</td>
-                    <td >{song[3]}</td>
+                    
                     <td><img src={i} class="validateimage"/></td>
-                    <td  width="100px">{song[2]}</td>
+                    <td  width="100px">{song[4]}</td>
+                    <td >{song[2]}</td>
                     <td>{song[5]}</td>
                     <td>{song[6]}</td>
                     <td>{this.renderButton(index)}</td>
@@ -84,8 +86,15 @@ class CartProfile extends React.Component {
             body: JSON.stringify(body)
             })
             .then(response => {if(response.ok){
-                alert("Details deleted");
-              window.location.reload(false);
+               // alert("Details deleted");
+               swal({
+                title: "Deletion",
+                text: "Product details deleted Successfully!!!!",
+                icon: "success",
+                button: "Ok",
+              }).then(function(){
+                window.location.reload(false);
+              });
             }
           })
 
@@ -112,8 +121,15 @@ class CartProfile extends React.Component {
             body: JSON.stringify(body)
             })
             .then(response => {if(response.ok){
-                alert("Details submitted.. Thank You For purchasing..");
-              window.location.reload(false);
+               // alert("Details submitted.. Thank You For purchasing..");
+               swal({
+                title: "Purchase Successful",
+                text: "Thank you for purchasing!!!",
+                icon: "success",
+                button: "Ok",
+              }).then(function(){
+                window.location.reload(false);
+              });
             }
           })
         
@@ -156,8 +172,9 @@ class CartProfile extends React.Component {
             
                 <div style={admin} class="adminmain">
                     <CNav/>
-                   
-                    <table id="table" class="w3-table-all w3-centered" border="1">
+                    <div class="cat">
+                     <h2><b><center>MY CART</center></b></h2><br/>
+                       <table id="etable" class="w3-table-all w3-centered" border="1">
                         <th><center>Name</center></th>
                         <th><center>Image</center></th>
                         <th><center>Agreed Price</center></th>
@@ -167,8 +184,9 @@ class CartProfile extends React.Component {
                         <th><center>Buy</center></th>
                         <th><center>Delete</center></th>
                         
-                     <tbody> {this.renderResultRows()} </tbody>
-                    </table>
+                       <tbody> {this.renderResultRows()} </tbody>
+                      </table>
+                    </div>
                     
                     
                 </div>

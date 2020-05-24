@@ -58,10 +58,10 @@ class Search extends React.Component{
                 <tr id={index} className="foralign">
                     
                     <td >{song[1]}</td>
-                    <td >{song[2]}</td>
+                    <td ><div class="cost">Rs {song[6]}/-</div><div class="nominal">Rs {song[2]}/-</div></td>
                     <td >{song[3]}</td>
                     <td><img src={i} class="customerimage"/></td>
-                    <td >{song[5]}</td>
+                    <td>{song[5]}<br/>Year of Purchase : {song[7]} </td>
                     <td><button onClick={() => this.buy(index)} >BUY</button></td>
                     
                      </tr>

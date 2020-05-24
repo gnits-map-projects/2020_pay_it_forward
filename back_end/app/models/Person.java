@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.math.BigInteger;
 
 @Entity
+
 public class Person {
 
     @Id

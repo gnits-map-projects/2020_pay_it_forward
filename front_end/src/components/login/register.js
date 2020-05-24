@@ -1,4 +1,5 @@
 import React from "react";
+import swal from 'sweetalert';
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const validNameRegex=RegExp(/^[a-zA-Z0-9]{10,}$/);
@@ -124,20 +125,45 @@ export class Register extends React.Component {
     }
     console.log(body);
     if(this.state.name==""){
-      alert('Please enter the name')
+      swal({
+        title: "Name",
+        text: "Please Enter your Name",
+        icon: "error",
+        button: "ok",
+      });
 
     }
     else if(this.state.password==""){
-      alert('Please enter the password')
+      swal({
+        title: "Password",
+        text: "Please Enter the Password",
+        icon: "error",
+        button: "ok",
+      });
     }
     else if(this.state.email==""){
-      alert('Please enter the email')
+      swal({
+        title: "E-mail",
+        text: "Please Enter your E-mail",
+        icon: "error",
+        button: "ok",
+      });
     }
     else if(this.state.phone==""){
-      alert('Please enter the phone')
+      swal({
+        title: "Phone",
+        text: "Please Enter your Phone number",
+        icon: "error",
+        button: "ok",
+      });
     }
     else if(this.state.address==""){
-      alert('Please enter the address')
+      swal({
+        title: "Address",
+        text: "Please Enter your Name",
+        icon: "error",
+        button: "ok",
+      });
     }
     else{
     
@@ -160,12 +186,22 @@ export class Register extends React.Component {
        method: 'POST',
        body: JSON.stringify(body)
     }).then(response => {if(response.ok){
-      alert('Details submitted');
+      swal({
+        title: "Registration",
+        text: "Successfully Registered",
+        icon: "success",
+        button: "ok",
+      });
     }
     })
  .catch((error)=> {
    console.error(error) ;
-   alert("Email already exists");
+   swal({
+    title: "Registration",
+    text: "E-mail Already exists",
+    icon: "error",
+    button: "ok",
+  });
   })
   
   }
@@ -223,6 +259,7 @@ export class Register extends React.Component {
         
       </div>
       </form>
+     
       </div>
       
     );

@@ -1,18 +1,22 @@
 import React from "react";
 import Nav from './Nav'
 import login_img from './img/login_img.jpeg';
+import login_img_1 from './img/login_img_1.jpg';
+import login_img_2 from './img/login_img_2.jpg';
 import pitimg1 from './img/pitimg1.jpg';
 import './Nav.css';
 import './Home.css';
+import swal from 'sweetalert';
 
+import BackgroundSlider from 'react-background-slider'
 
-const home = {
+/*const home = {
     backgroundImage: 'url(' + login_img + ')',
     width: '100%',
     height: '100%',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 100%',
-}
+}*/
 
 class Home extends React.Component {
   constructor(props) {
@@ -87,7 +91,15 @@ class Home extends React.Component {
        method: 'POST',
        body: JSON.stringify(body)
     }).then(response => {if(response.ok){
-      alert('Feedback Details submitted');
+     // alert('Feedback Details submitted');
+     swal({
+      title: "Feedback",
+      text: "Details Submitted",
+      icon: "success",
+      button: "Ok",
+    }).then(function(){
+      window.location.reload(false);
+    });
     }
     })
   
@@ -96,9 +108,16 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div style={home}>
-          <Nav/>
+      <body>
+          <h> <Nav/></h>
             <div class="image11">
+
+            <BackgroundSlider
+                images={[login_img,login_img_1,login_img_2]}
+                duration={3}
+                transition={2}
+              />
+
                 <a class="btn" href="/login"><span>Register/Login</span></a>
             </div>
             <div id="about">
@@ -121,9 +140,9 @@ class Home extends React.Component {
                   <button type="submit" id="submit" onClick={this.handleSubmit}>Submit</button>
                 </form>               
             </div>
-            <br/><br/><br/>
+            
           
-      </div>
+      </body>
     );
   }
 }

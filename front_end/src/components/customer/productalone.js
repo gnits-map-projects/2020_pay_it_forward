@@ -3,6 +3,7 @@ import CNav from './Nav';
 import './c_home.css'
 import { BrowserRouter, Route } from 'react-router-dom';
 import Sidenav from "./sidenav"
+import swal from 'sweetalert';
 
 var id,s1,s2,cid;
 const donor ={
@@ -103,9 +104,23 @@ class productalone extends React.Component {
       console.log(this.state.reqquant,this.state.aprice)
       console.log(this.state.cp.quant)
       if(this.state.aprice < this.state.cp.nprice)
-        alert("Entered agreed price should be greater than or equal to nominal price")
+        {
+          swal({
+            title: "Agreed price Warning",
+            text: "Entered agreed price should be greater than or equal to nominal price",
+            icon: "warning",
+            button: "Ok",
+          });
+        }
       else if(this.state.reqquant > this.state.cp.quant)
-        alert("Entered quantity should be less than or equal to availability")
+        {
+          swal({
+            title: "Required Quantity Warning",
+            text: "Entered quantity should be less than or equal to availability",
+            icon: "warning",
+            button: "Ok",
+          });
+        }
       else{
         var body = {
             pid: id,
@@ -133,9 +148,17 @@ class productalone extends React.Component {
         .then(response => {if(response.ok){
           const templateId = 'template_zWkPNL9Z';
 
-          this.sendFeedback(templateId, { from_name: this.state.name, email: this.state.email})
+          this.sendFeedback(templateId, { from_name: this.state.cp.pname, email: this.state.email})
 
-            alert("Details submitted.. Thank You For Purchasing..");
+           // alert("Details submitted.. Thank You For Purchasing..");
+           swal({
+            title: "Purchase Successful",
+            text: "Purchased selected product Successfully!!!",
+            icon: "success",
+            button: "Ok",
+          }).then(function(){
+            window.location.reload(false);
+          });
             
           }
         })
@@ -148,11 +171,11 @@ class productalone extends React.Component {
       'gmail', templateId,
       variables
       ).then(res => {
-          alert('Email successfully sent!')
+         // alert('Email successfully sent!')
       })
       // Handle errors here however you like, or use a React error boundary
       .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))
-      window.location.reload(false);
+     // window.location.reload(false);
     }
 
     cart(event){
@@ -161,9 +184,23 @@ class productalone extends React.Component {
       console.log(this.state.cp.quant)
       //console.log(this.state.cp.quant)
       if(this.state.aprice < this.state.cp.nprice)
-        alert("Entered agreed price should be greater than or equal to nominal price")
+        {
+          swal({
+            title: "Agreed price Warning",
+            text: "Entered agreed price should be greater than or equal to nominal price",
+            icon: "warning",
+            button: "Ok",
+          });
+        }
       else if(this.state.reqquant > this.state.cp.quant)
-        alert("Entered quantity should be less than or equal to availability")
+        {
+          swal({
+            title: "Required Quantity Warning",
+            text: "Entered quantity should be less than or equal to availability",
+            icon: "warning",
+            button: "Ok",
+          });
+        }
       else{
         var body = {
             pid: id,
@@ -189,8 +226,14 @@ class productalone extends React.Component {
           body: JSON.stringify(body)
         })
         .then(response => {if(response.ok){
-              alert("Details submitted.. Added to cart..");
+          swal({
+            title: "Added to Cart",
+            text: "Product is added to cart",
+            icon: "success",
+            button: "Ok",
+          }).then(function(){
             window.location.reload(false);
+          });
           }
         })
         
@@ -216,9 +259,10 @@ class productalone extends React.Component {
                     <div class="div_right">
                       
                       <table class="productalonetable">
-                      <tr><td><h3>Nominal Price </h3></td><td><h3>Rs.{this.state.cp.nprice}</h3></td></tr>
+                        <tr><td><h3>Nominal Price </h3></td><td><h3><h5 class="cost">Rs {this.state.cp.cost}</h5>Rs.{this.state.cp.nprice}</h3></td></tr>
                         <tr><td><h3>Availabitlity </h3></td><td><h3>{this.state.cp.quant}</h3></td></tr>
                         <tr><td><h3>Description </h3></td><td><h3>{this.state.cp.des}</h3></td></tr> 
+                        <tr><td><h3>Year of Purchase </h3></td><td><h3>{this.state.cp.year}</h3></td></tr> 
                         <tr><td><h3>Required Quantity </h3></td><td><h3><input type="text" class="producttext" value={this.state.reqquant} onChange={this.reqquant} required/></h3></td></tr> 
                         <tr><td><h3>Agreed price </h3></td><td><h3><input type="text" class="producttext" value={this.state.aprice} onChange={this.aprice} required/></h3></td></tr>
                         <button className="productalonebtn" onClick={this.buyproduct}>BuyProduct</button>&nbsp;&nbsp;&nbsp;

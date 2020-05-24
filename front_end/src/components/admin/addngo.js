@@ -2,6 +2,7 @@ import React from "react";
 import AdminNav from './Nav';
 import ngo from '../img/ngo.jpg';
 import './addngo.css';
+import swal from 'sweetalert';
 
 const admin = {
     backgroundImage: 'url(' + ngo + ')',
@@ -113,12 +114,34 @@ class Addngo extends React.Component {
         body: JSON.stringify(body)
       })
       .then(response => {if(response.ok){
-        alert('NGO Details submitted');
+        const templateId = 'donor_product_deletion';
+
+        this.sendFeedback(templateId, { from_name: this.state.name, email: this.state.email})
+        //alert('NGO Details submitted');
+        swal({
+          title: "NGO Details",
+          text: "NGO details submitted Successfully!!!",
+          icon: "success",
+          button: "Ok",
+        }).then(function(){
+          window.location.reload(false);
+        });
       }
       })
     }
   }
 
+  sendFeedback (templateId, variables) {
+    window.emailjs.send(
+    'gmail', templateId,
+    variables
+    ).then(res => {
+        //alert('Email successfully sent!')
+    })
+    // Handle errors here however you like, or use a React error boundary
+    .catch(err => console.error('Oh well, you failed. Here some thoughts on the error that occured:', err))
+   // window.location.reload(false);
+  }
 
   handleCustomerSubmit = event => {
     event.preventDefault();
@@ -154,7 +177,15 @@ class Addngo extends React.Component {
         body: JSON.stringify(body)
       })
       .then(response => {if(response.ok){
-        alert('Requested Search Details for products submitted');
+        //alert('Requested Search Details for products submitted');
+        swal({
+          title: "Customer Request",
+          text: "Customer requested product details submitted Successfully!!!",
+          icon: "success",
+          button: "Ok",
+        }).then(function(){
+          window.location.reload(false);
+        });
       }
       })
     }

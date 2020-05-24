@@ -2,6 +2,7 @@ import React from "react";
 import DonorNav from './Nav';
 import './myprofile.css';
 import UserProfile from './UserProfile'
+import swal from 'sweetalert';
 
 const donor ={
     width: '100%',
@@ -163,21 +164,7 @@ class DonorProfile extends React.Component {
         
         }
         console.log(body);
-        if(this.state.name==""){
-          alert('Please enter the name')
-    
-        }
         
-        else if(this.state.email==""){
-          alert('Please enter the email')
-        }
-        else if(this.state.phone==""){
-          alert('Please enter the phone')
-        }
-        else if(this.state.address==""){
-          alert('Please enter the address')
-        }
-        else{
         
     
       const url = "http://localhost:9000/updateperson";
@@ -196,12 +183,20 @@ class DonorProfile extends React.Component {
            method: 'POST',
            body: JSON.stringify(body)
         }).then(response => {if(response.ok){
-          alert('Details submitted');
-          window.location.reload(false);
+          //alert("Details Updated Successfully!!!")
+          swal({
+            title: "Details",
+            text: "Profile details updated Successfully!!!",
+            icon: "success",
+            button: "Ok",
+          }).then(function(){
+            window.location.reload(false);
+          });
+          
         }
         })
      
-     }
+     
     }
     
     

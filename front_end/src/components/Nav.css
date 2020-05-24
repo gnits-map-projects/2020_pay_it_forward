@@ -56,6 +56,15 @@ body {
     border: 1px solid #e7e7e7;
     background-color: rgb(160, 65, 101);
   }
+  h1{
+    
+    margin-top: 0px;
+    margin-bottom: 0px;
+    }
+
+
+
+
   .nav{
     height:70px;
   }
@@ -83,7 +92,7 @@ body {
     padding: 25px;
     width: 90px;
     float: right;
-    font-size: 20px;
+    font-size: 30px;
   }
   
 

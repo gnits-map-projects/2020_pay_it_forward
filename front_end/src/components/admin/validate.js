@@ -3,6 +3,7 @@ import AdminNav from './Nav';
 import './addngo.css';
 import './validate.css';
 import Popupform from './popupform';
+import swal from 'sweetalert';
 
 
 const admin11 = {
@@ -46,6 +47,8 @@ class Validate extends React.Component {
                     <td ><center>{song[1]}</center></td>
                     <td ><center>{song[3]}</center></td>
                     <td><img src={i} class="validateimage"/></td>
+                    <td ><center>Rs {song[6]}/-</center></td>
+                    <td ><center>{song[7]}</center></td>
                     <td contentEditable="true" id={a} width="100px"></td>
                     <td><button onClick={() => this.fetchDetails(index)} > Validate </button></td>
                     <td><button onClick={() => this.deleteDetails(index)} > Delete </button></td>
@@ -76,8 +79,16 @@ class Validate extends React.Component {
             body: JSON.stringify(body)
             })
             .then(response => {if(response.ok){
-                alert("Details deleted");
-              window.location.reload(false);
+               // alert("Details deleted");
+               swal({
+                title: "Deletion",
+                text: "Product details deleted Successfully!!!",
+                icon: "success",
+                button: "Ok",
+              }).then(function(){
+                window.location.reload(false);
+              });
+              
             }
           })
 
@@ -107,8 +118,15 @@ class Validate extends React.Component {
             body: JSON.stringify(body)
             })
             .then(response => {if(response.ok){
-                alert("Details submitted.. Product is certified for purchasing..");
-              window.location.reload(false);
+                //alert("Details submitted.. Product is certified for purchasing..");
+                swal({
+                    title: "Validation",
+                    text: "Product details submitted Successfully!!!",
+                    icon: "success",
+                    button: "Ok",
+                  }).then(function(){
+                    window.location.reload(false);
+                  });
             }
           })
         
@@ -148,19 +166,22 @@ class Validate extends React.Component {
             
                 <div style={admin11} class="adminmain11">
                     <AdminNav/>
-                   
-                    <table  class="w3-table-all" border="1" id="table">
+                    <div class="cat">
+                     <h2><b><center>VALIDATE PRODUCTS</center></b></h2><br/>
+                      <table  class="w3-table-all" border="1" id="etable">
                         
                         <th><center>Name</center></th>
                         <th><center>Category</center></th>
                         <th><center>Image</center></th>
-                        <th><center>Nominal Price</center></th>
+                        <th><center>Original Cost</center></th>
+                        <th><center>Year of Purchase</center></th>
+                        <th><center>Nominal Price(In Rs)</center></th>
                         <th><center>Validation</center></th>
                         <th><center>Remove</center></th>
                         
-                     <tbody> {this.renderResultRows()} </tbody>
-                    </table>
-                    
+                       <tbody> {this.renderResultRows()} </tbody>
+                      </table>
+                    </div>
                     {/* <img src={window.location.origin + "/productimages/drafter.jpg"}/> */}
                 </div>
             )

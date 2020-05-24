@@ -1,5 +1,7 @@
 import React from "react";
 import UserProfile from '../donor/UserProfile';
+import swal from 'sweetalert';
+
 
 
 
@@ -39,11 +41,21 @@ export class Login extends React.Component {
     }
     console.log(body);
     if(this.state.email==""){
-      alert('Please enter the name')
+      swal({
+        title: "Name",
+        text: "Please enter your Name",
+        icon: "error",
+        button: "ok",
+      });
 
     }
     else if(this.state.password==""){
-      alert('Please enter the password')
+      swal({
+        title: "Password",
+        text: "Please enter your password",
+        icon: "error",
+        button: "ok",
+      });
     }
     
     else{
@@ -71,7 +83,12 @@ export class Login extends React.Component {
             console.log(id);
             sessionStorage.setItem("id",id)
             window.location.href='/donorhome';
-            })).catch(error=>{alert("invalid user details")});
+            })).catch(error=>{ swal({
+              title: "Login",
+              text: "Invalid Donor",
+              icon: "error",
+              button: "ok",
+            });});
   
           }
           }
@@ -85,11 +102,21 @@ export class Login extends React.Component {
     }
     console.log(body);
     if(this.state.email==""){
-      alert('Please enter the name')
+      swal({
+        title: "Name",
+        text: "Please enter your Name",
+        icon: "error",
+        button: "ok",
+      });
 
     }
     else if(this.state.password==""){
-      alert('Please enter the password')
+      swal({
+        title: "Password",
+        text: "Please enter your password",
+        icon: "error",
+        button: "ok",
+      });
     }
     
     else{
@@ -117,7 +144,12 @@ export class Login extends React.Component {
             console.log(id);
             sessionStorage.setItem("id",id)
             window.location.href='/chome';
-            })).catch(error=>{alert(error)});
+            })).catch(error=>{swal({
+              title: "Login",
+              text: "Invalid Login Credentials",
+              icon: "error",
+              button: "ok",
+            });});
   
           }
     }
@@ -126,7 +158,12 @@ export class Login extends React.Component {
       if(this.state.email=="admin@gmail.com" && this.state.password=="admin")
           window.location.href = '/validate'
       else  
-          alert("Invalid admin");
+      swal({
+        title: "Login",
+        text: "Invalid Admin",
+        icon: "error",
+        button: "ok",
+      });
     }
           
 
@@ -159,7 +196,9 @@ export class Login extends React.Component {
           </button><br/><br/><br/>
           <a href="/home"><u>back</u></a>
         </div>
+        
       </div>
+     
       </form>
     );
   }

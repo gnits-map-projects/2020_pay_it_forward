@@ -1,6 +1,7 @@
 import React from "react";
 import AdminNav from './Nav';
 import ngo from '../img/ngo.jpg';
+import swal from 'sweetalert';
 
 
 const admin = {
@@ -65,8 +66,15 @@ class Feedback extends React.Component {
             body: JSON.stringify(body)
             })
             .then(response => {if(response.ok){
-                alert("Details deleted");
-              window.location.reload(false);
+                //alert("Details deleted");
+                swal({
+                    title: "Feedback",
+                    text: "Feedback details deleted Successfully!!!",
+                    icon: "success",
+                    button: "Ok",
+                  }).then(function(){
+                    window.location.reload(false);
+                  });
             }
           })
 
@@ -100,7 +108,9 @@ class Feedback extends React.Component {
         return (
           <div style={admin} class="adminmain">
               <AdminNav/>
-              <table id="table" class="w3-table-all" border="1">
+              <div class="cat">
+               <h2><b><center>USER FEEDBACK</center></b></h2><br/>
+              <table id="etable" class="w3-table-all" border="1">
                         <th><center>Name</center></th>
                         <th><center>Email</center></th>
                         <th><center>Phone Number</center></th>
@@ -108,6 +118,7 @@ class Feedback extends React.Component {
                         <th><center>Delete</center></th>
                      <tbody> {this.renderResultRows()} </tbody>
                 </table>
+               </div>
           </div>
         )
     }

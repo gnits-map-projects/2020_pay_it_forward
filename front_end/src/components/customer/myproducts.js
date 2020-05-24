@@ -13,7 +13,11 @@ const admin = {
 
 
 const table = {
-    top:'0%',
+    top:'10%',
+    left:'40%'
+}
+const heading ={
+    top: '0%',
     left:'40%'
 }
       
@@ -41,7 +45,7 @@ class Cproducts extends React.Component {
                     
                     <td>{song[0]}</td>
                     <td><img src={i} class="validateimage"/></td>
-                    <td >{song[2]}</td>
+                    <td >Rs {song[2]}/-</td>
                     
                     <td  width="100px">{song[3]}</td>
                      </tr>
@@ -120,17 +124,19 @@ class Cproducts extends React.Component {
             
                 <div style={admin} class="adminmain">
                     <CNav/>
-                   
-                    <table id="table" class="w3-table-all w3-centered" border="1">
+                    <div class="cat">
+                     <h2><b><center>MY PURCHASED PRODUCTS</center></b></h2><br/>
+                      <table id="etable" class="w3-table-all w3-centered" border="1">
+                    
                         <th><center>Name</center></th>
                         <th><center>Image</center></th>
                         <th><center>Purchased Price</center></th>
                         <th><center>Quantity purchased</center></th>
                         
                         
-                     <tbody> {this.renderResultRows()} </tbody>
-                    </table>
-                    
+                        <tbody> {this.renderResultRows()} </tbody>
+                       </table>
+                    </div>
                     
                 </div>
             )

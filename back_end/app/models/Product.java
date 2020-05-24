@@ -25,4 +25,6 @@ public class Product {
     public String cat;
     public String scat;
     public Date expdate;
+    public Integer cost;
+    public Integer year;
 }

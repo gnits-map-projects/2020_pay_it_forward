@@ -35,11 +35,12 @@ class CNav extends React.Component {
         <div class="home">
             <div class="nav">
                 <ul>
-                    <li><a class="active" href="/"><img alt="sorry" height="120%" width="15%" src={pit}/></a></li>
+                <li><a class="active" href="/"><img alt="sorry" height="67px" width="190px" src={pit}/></a></li>
                     <li><a class="links" href="/login">LogOut</a></li>
                     <li><a class="links" href="/cart">MyCart</a></li>
                     <li><a class="links" href="/profile">MyProfile</a></li>
                     <li><a class="links" href="/products">MyProducts</a></li>
+                    <li><a class="links" href="/chome">Home</a></li>
                     <li><input type="text" name="search" placeholder="Search products.." value={this.state.search} onChange={this.search} class="searchlink" onKeyPress={event => {
                 if (event.key === 'Enter') {
                   this.searchProducts(event)

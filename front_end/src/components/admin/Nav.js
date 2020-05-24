@@ -13,7 +13,7 @@ class AdminNav extends React.Component {
                 <div class="home">
                     <div class="nav">
                         <ul>
-                            <li><a class="active" href="/"><img alt="sorry" height="120%" width="15%" src={pit}/></a></li>
+                        <li><a class="active" href="/"><img alt="sorry" height="80px" width="240px" src={pit}/></a></li>
                             <li><a class="links" href="/login">Log Out</a></li>
                             <li><a class="links" href="/feedback">Feedback</a></li>
                             <li><a class="links" href="/addngo">NGO & Customer</a></li>

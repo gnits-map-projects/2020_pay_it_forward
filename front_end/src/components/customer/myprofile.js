@@ -1,5 +1,6 @@
 import React from "react";
 import DonorNav from './Nav';
+import swal from 'sweetalert';
 
 const donor ={
     width: '100%',
@@ -140,8 +141,14 @@ class DonorProfile extends React.Component {
            method: 'POST',
            body: JSON.stringify(body)
         }).then(response => {if(response.ok){
-          alert('Details submitted');
-          window.location.reload(false);
+          swal({
+            title: "Details",
+            text: "Profile details updated Successfully!!!",
+            icon: "success",
+            button: "Ok",
+          }).then(function(){
+            window.location.reload(false);
+          });
         }
         })
      

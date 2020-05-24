@@ -12,7 +12,7 @@ class DonorNav extends React.Component {
         <div class="home">
             <div class="nav">
             <ul>
-                <li><a class="active" href="/"><img alt="sorry" height="120%" width="15%" src={pit}/></a></li>
+            <li><a class="active" href="/"><img alt="sorry" height="67px" width="190px" src={pit}/></a></li>
                 <li><a class="links" href="/dlogout">LogOut</a></li>
                 <li><a class="links" href="/donorprofile">MyProfile</a></li>
                 <li><a class="links" href="/dproducts">Donated Products</a></li>
